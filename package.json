@@ -1,0 +1,23 @@
+{
+  "name": "hw12-employeetracker",
+  "version": "1.0.0",
+  "description": "A command line node application for managing a company's employees",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gusgonz/HW12-EmployeeTracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gusgonz/HW12-EmployeeTracker/issues"
+  },
+  "homepage": "https://github.com/gusgonz/HW12-EmployeeTracker#readme",
+  "dependencies": {
+    "inquirer": "^7.0.4",
+    "mysql": "^2.18.1"
+  }
+}
