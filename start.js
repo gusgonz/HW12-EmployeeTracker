@@ -10,8 +10,7 @@ const prompt = () => {
       choices: [
         "View All Employees", // 1
         "View All Employees By Department", // 2
-        "View All Employees By Manager", // 3
-        "View All Roles", // 4
+        "View All Roles", // 3
         "Add Employee", // 1
         "Add Department", // 2
         "Add Role", // 3
@@ -59,11 +58,6 @@ const prompt = () => {
 
             prompt();
           });
-          break;
-
-        case "View All Employees By Manager":
-          // 
-
           break;
 
         case "View All Roles":
