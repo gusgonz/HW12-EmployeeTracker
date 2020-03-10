@@ -9,8 +9,15 @@ const orm = {
 
                 cb(result);
             });
-        } else {
+        } else if (table === null) {
             let queryString = `SELECT name, first_name, last_name FROM employees AS e JOIN roles AS r ON e.role_id = r.id JOIN departments AS de ON r.department_id = de.id Order BY name;`
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
+
+                cb(result);
+            });
+        } else if (table === false) {
+            let queryString = 'SELECT name, sum(salary) as sum FROM employees AS e JOIN roles AS r ON e.role_id = r.id JOIN departments AS de ON r.department_id = de.id group BY name';
             connection.query(queryString, (err, result) => {
                 if (err) throw err;
 
