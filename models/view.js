@@ -44,10 +44,10 @@ module.exports = (table, cb) => {
                 var results = '\nBudget Utilization by Department:\n\n';
 
                 result.forEach(row => {
-                    let niceString = `${row.name}: ${row.sum}\n`;
+                    let niceString = `${row.name}: $${row.sum}\n`;
                     results += niceString;
                 });
-                console.log(result);
+                console.log(results);
 
                 cb();
                 break;
