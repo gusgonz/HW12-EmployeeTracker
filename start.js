@@ -1,4 +1,4 @@
-const prompt = require("./lib/Prompt");
+const start = require("./lib/prompt");
 
 
-prompt();
+start();
