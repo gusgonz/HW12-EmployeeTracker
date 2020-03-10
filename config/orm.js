@@ -52,8 +52,8 @@ const orm = {
         });
     },
 
-    update: function (table, values, id, cb) {
-        connection.query('UPDATE FROM ?? SET ? WHERE id=?', [table, values, id], (err, result) => {
+    update: function (set, id, cb) {
+        connection.query('UPDATE employees SET ? WHERE id=?', [set, id], (err, result) => {
             if (err) throw (err);
 
             cb(result);
