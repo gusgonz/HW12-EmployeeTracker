@@ -39,6 +39,18 @@ module.exports = (table, cb) => {
                 console.log(results);
                 cb();
                 break;
+
+            case false:
+                var results = '\nBudget Utilization by Department:\n\n';
+
+                result.forEach(row => {
+                    let niceString = `${row.name}: ${row.sum}\n`;
+                    results += niceString;
+                });
+                console.log(result);
+
+                cb();
+                break;
         }
     });
 }
