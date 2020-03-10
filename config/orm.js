@@ -1,74 +1,60 @@
 const connection = require('./connection.js');
 
 const orm = {
-    view: function (viewType, cb) {
+    view: function (table, cb) {
+        if (table) {
+            let queryString = `SELECT * FROM ??`;
+            connection.query(queryString, table, (err, result) => {
+                if (err) throw err;
 
-        switch (viewType) {
-            case 1:
-                let queryString1 = `SELECT * FROM employees`;
-                connection.query(queryString1, (err, result) => {
-                    if (err) throw err;
+                cb(result);
+            });
+        } else {
+            let queryString = `SELECT name, first_name, last_name FROM employees AS e JOIN roles AS r ON e.role_id = r.id JOIN departments AS de ON r.department_id = de.id Order BY name;`
+            connection.query(queryString, (err, result) => {
+                if (err) throw err;
 
-                    cb(result);
-                });
-                break;
-            case 2:
-                let queryString2 = `SELECT name, first_name, last_name FROM employees AS e JOIN roles AS r ON e.role_id = r.id JOIN departments AS de ON r.department_id = de.id Order BY name;`
-                connection.query(queryString2, (err, result) => {
-                    if (err) throw err;
-
-                    cb(result);
-                });
-                break;
-
-            case 3:
-                connection.query(`SELECT * FROM roles`, (err, result) => {
-                    if (err) throw err;
-
-                    cb(result);
-                });
-
+                cb(result);
+            });
         }
     },
 
-    add: function (addType, insertValues, cb) {
+    add: function (table, insertValues, cb) {
         let queryString = 'INSERT INTO ?? ';
         let extra = ' VALUES (?)';
 
-        switch (addType) {
-            case 1:
+        switch (table) {
+            case "employees":
                 queryString += `(first_name, last_name, role_id, manager_id)` + extra;
-                connection.query(queryString, ['employees', insertValues], (err, result) => {
-                    if (err) throw err;
-
-                    cb(result);
-                });
-
                 break;
 
-            case 2:
+            case "departments":
                 queryString += `(name)` + extra;
-                connection.query(queryString, ['departments', insertValues], (err, result) => {
-                    if (err) throw err;
-
-                    cb(result);
-                });
-
                 break;
 
-            case 3:
+            case "roles":
                 queryString += `(title, salary, department_id)` + extra;
-                connection.query(queryString, ['roles', insertValues], (err, result) => {
-                    if (err) throw err;
-
-                    cb(result);
-                });
+                break;
         }
+
+        connection.query(queryString, [table, insertValues], (err, result) => {
+            if (err) throw err;
+
+            cb(result);
+        });
     },
 
     remove: function (table, id, cb) {
         connection.query(`DELETE FROM ?? WHERE id = ?`, [table, id], (err, result) => {
             if (err) throw err;
+
+            cb(result);
+        });
+    },
+
+    update: function (table, values, id, cb) {
+        connection.query('UPDATE FROM ?? SET ? WHERE id=?', [table, values, id], (err, result) => {
+            if (err) throw (err);
 
             cb(result);
         });
