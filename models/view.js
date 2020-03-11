@@ -1,4 +1,5 @@
 const orm = require("../config/orm");
+// const cTable = require('console.table');
 
 module.exports = (table, cb) => {
 
@@ -13,6 +14,7 @@ module.exports = (table, cb) => {
                 });
 
                 console.log(results);
+                // cTable(result);
                 cb();
                 break;
 
