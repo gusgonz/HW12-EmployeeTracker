@@ -9,8 +9,6 @@ Use the schema found in the 'db' folder to create your MySQL database to use thi
 
 Be sure to change the password on the connection.js file in the config folder.
 
-Deployed apps: https://fierce-escarpment-37985.herokuapp.com/
-
 ## Usage 
 
 Make sure to insert some data into your database. You can use the dummy data provided in the seeds file.
