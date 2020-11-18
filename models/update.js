@@ -3,7 +3,6 @@ const orm = require("../config/orm");
 
 module.exports = (route, cb) => {
 
-
     let questions = (route === 'm') ?
         [{
             type: 'input',
